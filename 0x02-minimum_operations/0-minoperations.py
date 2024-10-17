@@ -1,34 +1,21 @@
 #!/usr/bin/python3
-''' method that calculates the fewest number of operations 
+''' method that calculates the fewest number of operations
 '''
 
 
 def minOperations(n):
     '''Function that computes the fewest number of operations needed to result
     '''
-    if not isinstance(n, int):
-        return 0
-    ops_count = 0
-    clipboard = 0
-    done = 1
-    # print('H', end='')
-    while done < n:
-        if clipboard == 0:
-            # init (the first copy all and paste)
-            clipboard = done
-            done += clipboard
-            ops_count += 2
-            # print('-(11)->{}'.format('H' * done), end='')
-        elif n - done > 0 and (n - done) % done == 0:
-            # copy all and paste
-            clipboard = done
-            done += clipboard
-            ops_count += 2
-            # print('-(11)->{}'.format('H' * done), end='')
-        elif clipboard > 0:
-            # paste
-            done += clipboard
-            ops_count += 1
-            # print('-(01)->{}'.format('H' * done), end='')
-    # print('')
-    return ops_count
+    val = 1
+    start = 0
+    counter = 0
+    while val < n:
+        remainder = n - val
+        if (remainder % val == 0):
+            start = val
+            val += start
+            counter += 2
+        else:
+            val += start
+            counter += 1
+    return counter
